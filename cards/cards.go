@@ -24,7 +24,7 @@ type Card struct {
 	Value int
 }
 
-func (card *Card) Show() string {
+func (card *Card) String() string {
 	pipSymbols := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
 	pipSymbol := pipSymbols[card.Value - 1]
 	var suitSymbols [4]string
@@ -38,14 +38,14 @@ func (card *Card) Show() string {
 }
 
 type Deck struct {
-	Pile [52]Card
+	Pile [52]*Card
 	I int
 }
 func (deck *Deck) Init() {
 	for suit := 0; suit < 4; suit++ {
 		for val := ace; val <= king; val++ {
 			i := (val - 1) + suit * 13
-			deck.Pile[i] = Card{Suit: suit, Value: val}
+			deck.Pile[i] = &Card{Suit: suit, Value: val}
 		}
 	}
 	deck.I = 0
@@ -58,5 +58,5 @@ func (deck *Deck) Shuffle() {
 }
 func (deck *Deck) Draw() *Card {
 	defer func() { deck.I++ }()
-	return &deck.Pile[deck.I]
+	return deck.Pile[deck.I]
 }
