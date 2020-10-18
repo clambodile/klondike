@@ -25,8 +25,8 @@ type Card struct {
 }
 
 func (card *Card) String() string {
-	pipSymbols := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
-	pipSymbol := pipSymbols[card.Value - 1]
+	pipSymbols := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"}
+	pipSymbol := pipSymbols[card.Value-1]
 	var suitSymbols [4]string
 	suitSymbols[spades] = "S"
 	suitSymbols[hearts] = "H"
@@ -39,12 +39,13 @@ func (card *Card) String() string {
 
 type Deck struct {
 	Pile [52]*Card
-	I int
+	I    int
 }
+
 func (deck *Deck) Init() {
 	for suit := 0; suit < 4; suit++ {
 		for val := ace; val <= king; val++ {
-			i := (val - 1) + suit * 13
+			i := (val - 1) + suit*13
 			deck.Pile[i] = &Card{Suit: suit, Value: val}
 		}
 	}
