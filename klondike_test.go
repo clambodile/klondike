@@ -82,7 +82,7 @@ func TestGameState_Init(t *testing.T) {
 			assert.Len(t, gameState.Tableau[i], i + 1)
 		}
 	})
-	t.Run("Stock contains 24 cards.", func(t *testing.T) {
+	t.Run("Stock starts with 24 cards.", func(t *testing.T) {
 		assert.Len(t, gameState.Stock.Pile, 24)
 	})
 }
