@@ -34,7 +34,6 @@ func (card *Card) String() string {
 	suitSymbols[clubs] = "C"
 	suitSymbol := suitSymbols[card.Suit]
 	return fmt.Sprintf("%s%s", pipSymbol, suitSymbol)
-
 }
 
 type Deck struct {
@@ -51,12 +50,14 @@ func (deck *Deck) Init() {
 	}
 	deck.I = 0
 }
+
 func (deck *Deck) Shuffle() {
 	rand.Shuffle(52, func(i, j int) {
 		deck.Pile[i], deck.Pile[j] = deck.Pile[j], deck.Pile[i]
 	})
 	deck.I = 0
 }
+
 func (deck *Deck) Draw() *Card {
 	defer func() { deck.I++ }()
 	return deck.Pile[deck.I]
