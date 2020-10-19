@@ -21,6 +21,18 @@ func TestCard_String(t *testing.T) {
 	})
 }
 
+func TestPile_String(t *testing.T) {
+	t.Run("Returns a string version of the pile", func(t *testing.T) {
+		pile := Pile{
+			{Suit: 0, Value: 1},
+			{Suit: 1, Value: 2},
+			{Suit: 2, Value: 3},
+			{Suit: 3, Value: 13},
+		}
+		assert.Equal(t, "AS2H3CKD", pile.String())
+	})
+}
+
 func TestDeck_Init(t *testing.T) {
 	t.Run("New decks are empty.", func(t *testing.T) {
 		deck := &Deck{}

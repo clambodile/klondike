@@ -3,6 +3,7 @@ package cards
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 )
 
 const (
@@ -12,6 +13,13 @@ const (
 	diamonds
 )
 
+var SuitSymbols = map[int]string{
+	spades:   "S",
+	hearts:   "H",
+	diamonds: "D",
+	clubs:    "C",
+}
+
 const (
 	ace   = 1
 	jack  = 11
@@ -19,21 +27,27 @@ const (
 	king  = 13
 )
 
+var PipSymbols = []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"}
+
 type Card struct {
 	Suit  int
 	Value int
 }
 
 func (card *Card) String() string {
-	pipSymbols := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"}
-	pipSymbol := pipSymbols[card.Value-1]
-	var suitSymbols [4]string
-	suitSymbols[spades] = "S"
-	suitSymbols[hearts] = "H"
-	suitSymbols[diamonds] = "D"
-	suitSymbols[clubs] = "C"
-	suitSymbol := suitSymbols[card.Suit]
+	pipSymbol := PipSymbols[card.Value-1]
+	suitSymbol := SuitSymbols[card.Suit]
 	return fmt.Sprintf("%s%s", pipSymbol, suitSymbol)
+}
+
+type Pile []*Card
+
+func (pile *Pile) String() string {
+	var b strings.Builder
+	for _, card := range *pile {
+		_, _ = fmt.Fprintf(&b, "%s", card)
+	}
+	return b.String()
 }
 
 type Deck struct {
