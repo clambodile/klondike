@@ -72,4 +72,3 @@ func (state *State) String() string {
 	_, _ = fmt.Fprintf(&b, "S%s", state.Stock.String())
 	return b.String()
 }
-

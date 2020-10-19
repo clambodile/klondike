@@ -16,7 +16,7 @@ func TestParseFoundations(t *testing.T) {
 					Value: cards.Ace,
 				},
 				{
-					Suit: cards.Spades,
+					Suit:  cards.Spades,
 					Value: 2,
 				},
 			},
@@ -62,15 +62,15 @@ func TestParsePile(t *testing.T) {
 		input := "AS3CKD"
 		expected := cards.Pile{
 			{
-				Suit: cards.Spades,
+				Suit:  cards.Spades,
 				Value: cards.Ace,
 			},
 			{
-				Suit: cards.Clubs,
+				Suit:  cards.Clubs,
 				Value: 3,
 			},
 			{
-				Suit: cards.Diamonds,
+				Suit:  cards.Diamonds,
 				Value: cards.King,
 			},
 		}
@@ -84,7 +84,7 @@ func TestParseCard(t *testing.T) {
 	t.Run("Parses a single card.", func(t *testing.T) {
 		input := "AS"
 		expected := cards.Card{
-			Suit: cards.Spades,
+			Suit:  cards.Spades,
 			Value: cards.Ace,
 		}
 		card, err := parseCard(input)

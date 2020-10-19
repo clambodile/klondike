@@ -20,7 +20,7 @@ var SuitSymbols = map[int]string{
 	Clubs:    "C",
 }
 
-var SuitValues = map[string]int {
+var SuitValues = map[string]int{
 	"S": Spades,
 	"H": Hearts,
 	"D": Diamonds,
@@ -36,7 +36,7 @@ const (
 )
 
 var PipSymbols = []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"}
-var PipValues = map[string]int {
+var PipValues = map[string]int{
 	"A": Ace,
 	"2": 2,
 	"3": 3,
