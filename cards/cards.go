@@ -7,27 +7,50 @@ import (
 )
 
 const (
-	spades = iota
-	hearts
-	clubs
-	diamonds
+	Spades = iota
+	Hearts
+	Clubs
+	Diamonds
 )
 
 var SuitSymbols = map[int]string{
-	spades:   "S",
-	hearts:   "H",
-	diamonds: "D",
-	clubs:    "C",
+	Spades:   "S",
+	Hearts:   "H",
+	Diamonds: "D",
+	Clubs:    "C",
+}
+
+var SuitValues = map[string]int {
+	"S": Spades,
+	"H": Hearts,
+	"D": Diamonds,
+	"C": Clubs,
 }
 
 const (
-	ace   = 1
-	jack  = 11
-	queen = 12
-	king  = 13
+	Ace   = 1
+	Ten   = 10
+	Jack  = 11
+	Queen = 12
+	King  = 13
 )
 
 var PipSymbols = []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"}
+var PipValues = map[string]int {
+	"A": Ace,
+	"2": 2,
+	"3": 3,
+	"4": 4,
+	"5": 5,
+	"6": 6,
+	"7": 7,
+	"8": 8,
+	"9": 9,
+	"T": Ten,
+	"J": Jack,
+	"Q": Queen,
+	"K": King,
+}
 
 type Card struct {
 	Suit  int
@@ -57,7 +80,7 @@ type Deck struct {
 
 func (deck *Deck) Init() {
 	for suit := 0; suit < 4; suit++ {
-		for val := ace; val <= king; val++ {
+		for val := Ace; val <= King; val++ {
 			i := (val - 1) + suit*13
 			deck.Pile[i] = &Card{Suit: suit, Value: val}
 		}

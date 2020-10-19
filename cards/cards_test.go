@@ -7,11 +7,11 @@ import (
 
 func TestCard_String(t *testing.T) {
 	t.Run("Returns the correct string for any given card shown.", func(t *testing.T) {
-		card1 := Card{Suit: spades, Value: ace}
-		card2 := Card{Suit: hearts, Value: jack}
-		card3 := Card{Suit: diamonds, Value: queen}
-		card4 := Card{Suit: clubs, Value: king}
-		card5 := Card{Suit: spades, Value: 2}
+		card1 := Card{Suit: Spades, Value: ace}
+		card2 := Card{Suit: Hearts, Value: Jack}
+		card3 := Card{Suit: Diamonds, Value: Queen}
+		card4 := Card{Suit: Clubs, Value: King}
+		card5 := Card{Suit: Spades, Value: 2}
 
 		assert.Equal(t, "AS", card1.String())
 		assert.Equal(t, "JH", card2.String())

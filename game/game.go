@@ -6,6 +6,39 @@ import (
 	"strings"
 )
 
+//The Stock is the deck of cards which may be viewed on or three
+//at a time, and placed onto a Foundation or a Tableau.
+type Stock struct {
+	Pile cards.Pile
+	I    int
+}
+
+func (stock *Stock) String() string {
+	return stock.Pile.String()
+}
+
+func (stock *Stock) Current() *cards.Card {
+	return stock.Pile[stock.I]
+}
+
+func (stock *Stock) Next() {
+	stock.I++
+	if stock.I == len(stock.Pile) {
+		stock.I = 0
+	}
+}
+
+func (stock *Stock) Draw() *cards.Card {
+	defer func() {
+		stock.Pile = append(stock.Pile[:stock.I], stock.Pile[stock.I+1:]...)
+		stock.I--
+		if stock.I == -1 {
+			stock.I = len(stock.Pile) - 1
+		}
+	}()
+	return stock.Current()
+}
+
 type State struct {
 	Foundations [4]cards.Pile
 	Tableau     [7]cards.Pile
@@ -40,33 +73,3 @@ func (state *State) String() string {
 	return b.String()
 }
 
-type Stock struct {
-	Pile cards.Pile
-	I    int
-}
-
-func (stock *Stock) String() string {
-	return stock.Pile.String()
-}
-
-func (stock *Stock) Current() *cards.Card {
-	return stock.Pile[stock.I]
-}
-
-func (stock *Stock) Next() {
-	stock.I++
-	if stock.I == len(stock.Pile) {
-		stock.I = 0
-	}
-}
-
-func (stock *Stock) Draw() *cards.Card {
-	defer func() {
-		stock.Pile = append(stock.Pile[:stock.I], stock.Pile[stock.I+1:]...)
-		stock.I--
-		if stock.I == -1 {
-			stock.I = len(stock.Pile) - 1
-		}
-	}()
-	return stock.Current()
-}
